@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Enums\OrderStatus;
 
 class Order extends Model
 {
@@ -24,18 +25,17 @@ class Order extends Model
 
     public function getStatus() {
         switch ($this->status) {
-            case 0:
+            case OrderStatus::ORDER:
                 return 'Chờ xác nhận';
-            case -1:
-                return 'Đơn đã bị hủy';
-            case -2:
-                return 'Thanh toán thất bại';
-            case 1:
-                return 'Đã thanh toán';
-            case 2:
+
+            case OrderStatus::CONFIRM_ORDER:
+                return 'Đã xác nhận';
+
+            case OrderStatus::ORDER_SUCCESS:
                 return 'Thành công';
-            default:
-                return 'Trạng thái không xác định';
+
+            case OrderStatus::CANCEL_ORDER:
+                return 'Đã hủy';
         }
     }
 }

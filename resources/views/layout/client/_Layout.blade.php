@@ -153,8 +153,8 @@
                     </div>
                 </div>
                 <div class="col-lg-3 offset-lg-1 col-md-6 col-sm-6">
-                    <div class="footer__widget">
-                        <h6>NewLetter</h6>
+                    <div class="footer__widget">    
+                        <h6>Giải đáp </h6>
                         <div class="footer__newslatter">
                             <p>Mọi thắc mắc  xin liên hệ với chúng tôi !</p>
                             <form action="#">

@@ -22,21 +22,17 @@ use App\Http\Middleware\Authentication;
 use App\Http\Middleware\AuthorizationAdmin;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
+
 
 Route::prefix('admin')->name('admin.')->middleware([Authentication::class, AuthorizationAdmin::class])->group(function() {
 
     Route::get('/index', [HomeController::class, 'index'])->name('home.index');
-    Route::get('/hoa-don-chi-tiet/{orderid}', [HomeController::class, 'showOrder'])->name('home.showOrder');
+    Route::prefix('/order')->group(function() {
+        Route::get('/hoa-don-chi-tiet/{orderid}', [HomeController::class, 'showOrder'])->name('home.showOrder');
+        Route::get('/accept/{id}', [HomeController::class, 'accept'])->name('order.accept');
+        Route::get('/cancel/{id}', [HomeController::class, 'cancel'])->name('order.cancel');
+        Route::get('/success/{id}', [HomeController::class, 'success'])->name('order.success');
+    });
 
     Route::prefix('categories')->controller(CategoryController::class)->name('categories.')->group(function() {
         Route::get('/', 'index')->name('index');
@@ -45,6 +41,7 @@ Route::prefix('admin')->name('admin.')->middleware([Authentication::class, Autho
         Route::get('/edit/{category}', 'edit')->name('edit');
         Route::put('/update/{category}', 'update')->name('update');
         Route::delete('/destroy/{category}', 'destroy')->name('destroy');
+
     });
 
     Route::prefix('menus')->controller(MenuController::class)->name('menus.')->group(function() {

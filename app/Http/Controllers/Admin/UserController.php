@@ -23,7 +23,7 @@ class UserController extends Controller
     public function index() {
         $users = $this->model->where('deleted_at')->get();
 
-        return view($this->route_prefix.'index', [
+        return view('admin.users.index', [
             'users' => $users,
         ]);
     }
@@ -31,7 +31,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view($this->route_prefix.'create');
+        return view('admin.users.create');
     }
 
 
@@ -42,13 +42,13 @@ class UserController extends Controller
 
         $this->model->update($params);
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.users.index');
     }
 
 
     public function edit(User $user)
     {
-        return view($this->route_prefix.'edit', [
+        return view('admin.users.edit', [
             'user' => $user
         ]);
     }
@@ -61,7 +61,7 @@ class UserController extends Controller
 
         $user->update($params);
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.users.index');
     }
 
 
@@ -69,7 +69,7 @@ class UserController extends Controller
     {
 
         if ($user->id == 1) {
-            return redirect()->route($this->route_prefix.'index')
+            return redirect()->route('admin.users.index')
                         ->with('msg', 'Tài khoản quản trị không thể xóa')
                         ->with('type', 'error');
         }
@@ -77,6 +77,6 @@ class UserController extends Controller
         $user->deleted_at = Carbon::now();
         $user->update();
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.users.index');
     }
 }

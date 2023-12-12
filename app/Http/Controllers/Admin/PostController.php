@@ -23,7 +23,7 @@ class PostController extends Controller
     public function index() {
         $posts = $this->model->where('deleted_at')->get();
 
-        return view($this->route_prefix.'index', [
+        return view('admin.posts.index', [
             'posts' => $posts,
         ]);
     }
@@ -31,7 +31,7 @@ class PostController extends Controller
 
     public function create()
     {
-        return view($this->route_prefix.'create');
+        return view('admin.posts.create');
     }
 
 
@@ -39,13 +39,13 @@ class PostController extends Controller
     {
         $this->model->create($post->validated());
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.posts.index');
     }
 
 
     public function edit(Post $post)
     {
-        return view($this->route_prefix.'edit', [
+        return view('admin.posts.edit', [
             'post' => $post
         ]);
     }
@@ -55,7 +55,7 @@ class PostController extends Controller
     {
         $post->update($request->validated());
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.posts.index');
     }
 
 
@@ -64,6 +64,6 @@ class PostController extends Controller
         $post->deleted_at = Carbon::now();
         $post->update();
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.posts.index');
     }
 }

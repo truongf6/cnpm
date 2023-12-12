@@ -8,7 +8,8 @@ use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Http\Request;
-
+use App\Enums\OrderStatus;
+use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index() {
@@ -21,6 +22,7 @@ class HomeController extends Controller
         return view('admin.home.index', [
             'orders' => $orders,
         ]);
+
     }
 
     public function showOrder($orderid) {
@@ -41,5 +43,26 @@ class HomeController extends Controller
             'order' => $order,
             'products' => $products,
         ]);
+    }
+
+    public function accept($id) {
+        $order = Order::where('status', OrderStatus::ORDER)->where('id', $id)->firstOrFail();
+        $order->status = OrderStatus::CONFIRM_ORDER;
+        $order->save();
+        return redirect()->route('admin.home.showOrder', ['orderid' => $id]);
+    }
+
+    public function success($id) {
+        $order = Order::where('status', OrderStatus::CONFIRM_ORDER)->where('id', $id)->firstOrFail();
+        $order->status = OrderStatus::ORDER_SUCCESS;
+        $order->save();
+        return redirect()->route('admin.home.showOrder', ['orderid' => $id]);
+    }
+
+    public function cancel(Request $request, $id) {
+        $order = Order::where('status', OrderStatus::ORDER)->where('id', $id)->firstOrFail();
+        $order->status = OrderStatus::CANCEL_ORDER;
+        $order->save();
+        return redirect()->route('admin.home.showOrder', ['orderid' => $id]);
     }
 }

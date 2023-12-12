@@ -35,6 +35,8 @@
                                                         href="#" class="datatable-sorter">Người nhận</a></th>
                                                 <th data-sortable="true" style="width: 9.806629834254144%;"><a
                                                         href="#" class="datatable-sorter">Giá</a></th>
+                                                <th data-sortable="true" style="width: 9.806629834254144%;"><a
+                                                        href="#" class="datatable-sorter">Trạng Thái</a></th>
                                                 <th data-sortable="true" style="width: 20.05524861878453%;"><a
                                                         href="#" class="datatable-sorter">Hình thức thanh toán</a></th>
                                             </tr>
@@ -47,6 +49,7 @@
                                                     <td>{{ $order->fullnameOrder }}</td>
                                                     <td>{{ $order->fullnameReciver }}</td>
                                                     <td>{{ number_format($order->totalOrder) }} VND</td>
+                                                    <td>{{ $order->getStatus() }}</td>
                                                     <td>{{ $order->payMethod }}</td>
                                                 </tr>
                                             @endforeach

@@ -24,7 +24,7 @@ class ProductController extends Controller
     public function index() {
         $products = $this->model->where('deleted_at')->get();
 
-        return view($this->route_prefix.'index', [
+        return view('admin.products.index', [
             'products' => $products,
         ]);
     }
@@ -34,7 +34,7 @@ class ProductController extends Controller
     {
         $categories = Category::query()->where('deleted_at')->get();
 
-        return view($this->route_prefix.'create', [
+        return view('admin.products.create', [
             'categories' => $categories,
         ]);
     }
@@ -44,7 +44,7 @@ class ProductController extends Controller
     {
         $this->model->create($product->validated());
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.products.index');
     }
 
 
@@ -52,7 +52,7 @@ class ProductController extends Controller
     {
         $categories = Category::query()->where('deleted_at')->get();
 
-        return view($this->route_prefix.'edit', [
+        return view('admin.products.edit', [
             'product' => $product,
             'categories' => $categories,
         ]);
@@ -63,7 +63,7 @@ class ProductController extends Controller
     {
         $product->update($request->validated());
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.products.index');
     }
 
 
@@ -72,6 +72,6 @@ class ProductController extends Controller
         $product->deleted_at = Carbon::now();
         $product->update();
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.products.index');
     }
 }

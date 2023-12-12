@@ -23,7 +23,7 @@ class MenuController extends Controller
     public function index() {
         $menus = $this->model->where('deleted_at')->get();
 
-        return view($this->route_prefix.'index', [
+        return view('admin.menus.index', [
             'menus' => $menus,
         ]);
     }
@@ -31,7 +31,7 @@ class MenuController extends Controller
 
     public function create()
     {
-        return view($this->route_prefix.'create');
+        return view('admin.menus.create');
     }
 
 
@@ -39,13 +39,13 @@ class MenuController extends Controller
     {
         $this->model->create($menu->validated());
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.menus.index');
     }
 
 
     public function edit(Menu $menu)
     {
-        return view($this->route_prefix.'edit', [
+        return view('admin.menus.edit', [
             'menu' => $menu
         ]);
     }
@@ -55,7 +55,7 @@ class MenuController extends Controller
     {
         $menu->update($request->validated());
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.menus.index');
     }
 
 
@@ -64,6 +64,6 @@ class MenuController extends Controller
         $menu->deleted_at = Carbon::now();
         $menu->update();
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.menus.index');
     }
 }

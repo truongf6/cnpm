@@ -22,7 +22,7 @@ class CategoryController extends Controller
     public function index() {
         $categories = $this->model->where('deleted_at')->get();
 
-        return view($this->route_prefix.'index', [
+        return view('admin.categories.index', [
             'categories' => $categories,
         ]);
     }
@@ -30,7 +30,7 @@ class CategoryController extends Controller
 
     public function create()
     {
-        return view($this->route_prefix.'create');
+        return view('admin.categories.create');
     }
 
 
@@ -38,13 +38,13 @@ class CategoryController extends Controller
     {
         Category::create($category->validated());
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.categories.index');
     }
 
 
     public function edit(Category $category)
     {
-        return view($this->route_prefix.'edit', [
+        return view('admin.categories.edit', [
             'category' => $category
         ]);
     }
@@ -54,7 +54,7 @@ class CategoryController extends Controller
     {
         $category->update($request->validated());
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.categories.index');
     }
 
 
@@ -63,6 +63,6 @@ class CategoryController extends Controller
         $category->deleted_at = Carbon::now();
         $category->update();
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.categories.index');
     }
 }

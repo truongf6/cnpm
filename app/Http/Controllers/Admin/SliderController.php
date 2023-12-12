@@ -23,7 +23,7 @@ class SliderController extends Controller
     public function index() {
         $sliders = $this->model->where('deleted_at')->get();
 
-        return view($this->route_prefix.'index', [
+        return view('admin.sliders.index', [
             'sliders' => $sliders,
         ]);
     }
@@ -31,7 +31,7 @@ class SliderController extends Controller
 
     public function create()
     {
-        return view($this->route_prefix.'create');
+        return view('admin.sliders.create');
     }
 
 
@@ -39,13 +39,13 @@ class SliderController extends Controller
     {
         $this->model->create($slider->validated());
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.sliders.index');
     }
 
 
     public function edit(Slider $slider)
     {
-        return view($this->route_prefix.'edit', [
+        return view('admin.sliders.edit', [
             'slider' => $slider
         ]);
     }
@@ -55,7 +55,7 @@ class SliderController extends Controller
     {
         $slider->update($request->validated());
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.sliders.index');
     }
 
 
@@ -64,6 +64,6 @@ class SliderController extends Controller
         $slider->deleted_at = Carbon::now();
         $slider->update();
 
-        return redirect()->route($this->route_prefix.'index');
+        return redirect()->route('admin.sliders.index');
     }
 }

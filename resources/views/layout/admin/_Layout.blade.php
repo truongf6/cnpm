@@ -6,7 +6,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Admin-Nội Thất</title>
+  <title>Admin-MonoLine</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -65,7 +65,7 @@
     <div class="d-flex align-items-center justify-content-between">
       <a href="/admin/index" class="logo d-flex align-items-center">
         <img src="{{ asset('assets/img/logo.png') }}" alt="">
-        <span class="d-none d-lg-block">Admin-Nội Thất</span>
+        <span class="d-none d-lg-block">Admin-MONOLINE</span>
       </a>
       <i class="bi bi-list toggle-sidebar-btn"></i>
     </div><!-- End Logo -->
@@ -100,14 +100,9 @@
   <!-- ======= Footer ======= -->
   <footer id="footer" class="footer">
     <div class="copyright">
-      &copy; Copyright <strong><span>Admin-Nội Thất</span></strong>. All Rights Reserved
+      &copy; Copyright <strong><span>Minh & Truong</span></strong>
     </div>
-    <div class="credits">
-      <!-- All the links in the footer should remain intact. -->
-      <!-- You can delete the links only if you purchased the pro version. -->
-      <!-- Licensing information: https://bootstrapmade.com/license/ -->
-      <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
-      Designed by <a href="https://bootstrapmade.com/">BootstrapMade</a>
+    
     </div>
   </footer><!-- End Footer -->
 
